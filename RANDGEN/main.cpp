@@ -16,20 +16,36 @@ string RandomString(int len)
    return newstr;
 }
 
-int main(int argc,char* argv[])
+int main(int argc,char *argv[])
 {
-  if(argc > 2){
-        cout<<"Too many Agruments!!"<<endl <<" only Numaric value allowed with no upper limit Like: randgen 1000."<<endl;
+	int lnth=128;
+string random_str;
+int split=0;
+  if(argc > 3){
+        cout<<"Too many Agruments!!"<<endl <<"Default out 128 bit only Numaric value allowed with no upper limit Like: randgen 1024 0."<<endl;
+  }else if(argc < 1){
+  	
+  	cout<<"Too few Agruments!!"<<endl <<"Default out 128 bit only Numaric value allowed with no upper limit Like: randgen 1024 0."<<endl;
   }
   else{
-int lnth;
- if(atoi(argv[1]) <= 0){
-        lnth=1000;
-}else{
-    lnth=atoi(argv[1]);
+
+ if(atoi(argv[1])>=1){
+         lnth=atoi(argv[1]);
 }
+ 	
+ if(atoi(argv[2])>= 1) {
+    split=atoi(argv[2]);	
+}
+
    srand(time(0));
-   string random_str = RandomString(lnth);
-   cout  << random_str << endl;
+   
+for (int i = 0; i <= split; i++) {
+  if(i >=1)
+{
+random_str += "-";	
+}
+random_str += RandomString(lnth);
+}
+   cout  << random_str << endl ;
 }
 }
